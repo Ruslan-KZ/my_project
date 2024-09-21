@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание занятий</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <h1>Расписание занятий</h1>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="schedule">
+            <h2>Список занятий на неделю</h2>
+            <ul class="schedule-list">
+                {% for schedule in schedules %}
+                <li class="schedule-item" style="background-color: {{ schedule.color }};">
+                    <div class="schedule-time">
+                        <span>{{ schedule.day }}:</span> {{ schedule.start_time }} - {{ schedule.end_time }}
+                    </div>
+                    <div class="schedule-details">
+                        <span class="subject">{{ schedule.subject }}</span> <span class="type">({{ schedule.type }})</span>
+                        <span class="teacher">Преподаватель: {{ schedule.teacher }}</span>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; Моё Расписание .</p>
+        </div>
+    </footer>
+</body>
+</html>
